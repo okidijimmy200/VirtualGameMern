@@ -5,7 +5,10 @@ import gameCtrl from '../controllers/game.controller'
 
 const router = express.Router()
 
+/*adding a GET route to the game routes, */
 router.route('/api/games')
+/*A GET request to /api/games will execute the list controller method, which will query the Game collection in the database, to return all the games in the response to
+the client */
   .get(gameCtrl.list)
 
   /*we will first declare a POST route at /api/games/by/:userId */

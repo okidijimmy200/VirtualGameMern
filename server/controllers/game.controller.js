@@ -21,9 +21,13 @@ maker. */
   }
 }
 
+/*method, the results retrieved by the query to the Game collection are sorted by
+the date of creation, with the latest games listed first. */
 const list = async (req, res) => {
   try {
+    /*Each game in the list will also populate the name and ID of the user who created it. */
     let games = await Game.find({}).populate('maker', '_id name').sort('-created').exec()
+    /*The resulting list of sorted games is returned in the response to the requesting client. */
     res.json(games)
   } catch (err) {
     return res.status(400).json({

@@ -1,0 +1,4 @@
+Lecture 1:
+Listing all games::
+--it will be possible to retrieve a list of all the games in the Game collection from the database using a list games API in the
+backend.

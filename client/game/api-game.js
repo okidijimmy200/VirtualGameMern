@@ -18,7 +18,10 @@ const create = async (params, credentials, game) => {
     }
   }
   
+  /*to fetch the games using this list API, we will set up a corresponding fetch method in api-game.js */
   const list = async (signal) => {
+    /*This fetch method can be used in any frontend interface to make a call to the list games API. The fetch will make a GET request to the API and receive the list of
+games in the response, which can be rendered in the interface. */
     try {
       let response = await fetch('/api/games', {
         method: 'GET',
