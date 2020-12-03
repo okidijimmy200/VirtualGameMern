@@ -1,3 +1,6 @@
+/*On the frontend, we will add a corresponding fetch method in api-game.js to
+make a POST request to the create game API by passing the form data collected from
+the signed-in user */
 const create = async (params, credentials, game) => {
     try {
       let response = await fetch('/api/games/by/'+ params.userId, {

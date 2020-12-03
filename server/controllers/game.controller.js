@@ -2,10 +2,16 @@ import Game from '../models/game.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
 
+/*Once the user authentication is verified after receiving the POST request containing
+the game data in the body, the create controller method is invoked next, to add the
+new game to the database. */
 const create = async (req, res, next) => {
+  /*a new game document is created according to the game model and the data passed in the request body from the client side */
   const game = new Game(req.body)
   game.maker= req.profile
   try{
+    /*this document is saved in the Game collection after the user reference is set as the game
+maker. */
     let result = await game.save()
     res.status(200).json(result)
   } catch (err) {

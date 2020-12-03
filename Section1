@@ -95,6 +95,37 @@ used for defining the Game model will allow a game database for the application 
 be maintained. This game collection will cater to all the requirements for developing a
 dynamic VR game according to the specifications of the MERN VR Game application.
 
+Lecture 3::
+Implementing game CRUD APIs::
+--In order to build a game platform that allows VR games to be made, managed, and
+accessed, we need to extend the backend to accept requests that enable game data
+manipulation in the database.
+
+--To make these features possible, the backend in the MERN VR Game application will expose a set of CRUD APIs for creating, editing,
+reading, listing, and deleting games from the database, which can be used in the frontend of the application with fetch calls, including in the React 360 game
+implementation.
+
+Creating a new game::
+--A user who is signed in to the application will be able to create new games in the
+database with the create game API endpoint.
+--A POST request to this route will process the :userId param, verify that the current
+user is signed in, and then create a new game with the game data passed in the
+request.
+
+--Once the user authentication is verified after receiving the POST request containing
+the game data in the body, the create controller method is invoked next, to add the
+new game to the database.
+
+--On the frontend, we will add a corresponding fetch method in api-game.js to
+make a POST request to the create game API by passing the form data collected from
+the signed-in user
+--This fetch method will be used in the frontend and provided the new game data
+with the user credentials needed to make the POST request to the create game API.
+The response from the fetch method will tell the user if the game was created
+successfully.
+--This create game API endpoint is ready to be used in a form view that can collect the
+new game details from the user, so new games can be added to the database.
+
 
 
 
