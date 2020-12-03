@@ -1,0 +1,42 @@
+Making the VR Game Dynamic using MERN::
+--In this chapter, we will extend the MongoDB, Express.js, React.js, and Node.js
+(MERN) skeleton application to build the MERN VR Game application, and use it to
+convert the static React 360 game developed in the previous chapter into a dynamic
+game.
+--We will achieve this by replacing the sample game data with game details
+fetched directly from the database.
+
+--We will use the MERN stack technologies to
+implement a game model and Create, Read, Update, and Delete (CRUD) application
+programming interfaces (APIs) in the backend, which will allow storage and
+retrieval of games, and frontend views, which will allow users to make their own
+games besides playing any of the games on the platform in their browser.
+
+To make MERN VR Game a complete and dynamic game application, we will
+implement the following:
+--A game model schema to store game details in MongoDB
+APIs for game CRUD operations
+--React views for creating, editing, listing, and deleting games
+--Updating the React 360 game to fetch data with the API
+--Loading the VR game with dynamic game data.
+
+Lecture 1:
+Introducing the dynamic MERN VR Game application::
+--On this platform, registered users will be able to make and
+modify their own games by providing an equirectangular image for the game world,
+and the VR object resources, including transform property values for each object to be
+placed in the game world.
+
+--Any visitor to the application will be able to browse
+through all the games added by the makers and play any game, to find and collect the
+3D objects in the game world that are relevant to the clue or description of each game.
+
+--When a registered user signs into the application, they will see a home page with all
+the games listed and an option to make their own game.
+
+--We will add new React components related to creating, editing, and listing VR games,
+and will also modify existing components such as the Profile, Menu, and Home
+components as we build out the features of the MERN VR Game application in the
+rest of the chapter. The core features in this game platform depend on the capability
+to store specific details of each game
+
