@@ -64,3 +64,37 @@ was created or updated; and a reference to the user who created the game.
 --These fields added in the game schema definition will capture details of each game on
 the platform and allow us to implement the game-related features in the MERN VR
 Game application.
+
+Lecture 3:
+Specifying the VR object schema::
+--The answerObjects and wrongObjects fields already defined in the game schema
+will both be arrays of VR object documents. These documents will represent the VR
+objects that are a part of the game. We will define the VR object Mongoose schema for
+these documents separately, with fields for storing the URLs of the object (OBJ) file
+and Material Template Library (MTL) file, along with the React 360 transform
+values, the scale value, and color value for each VR object.
+
+--These fields in the VR object schema represent a VR object to be added to the game
+world. When a new game document is saved to the database, the answerObjects
+and wrongObjects arrays will be populated with VRObject documents that adhere
+to this schema definition. When a user is creating a new game using this Game model
+with the defined game and VR object schemas, we want to ensure the user adds at
+least one VR object to each array in the game data.
+
+Validating array length in the game schema::
+--we have two arrays for adding VR
+objects to the game. These answerObjects and wrongObjects arrays in a game
+document must contain at least one VR object in each array when a game is being
+saved in the game collection.
+
+--These checks run every time a game is to be saved in the database and help ensure the
+game is made with at least two VR objects, including one object that can be collected
+and another object that cannot be collected.
+--These schema definitions and validations
+used for defining the Game model will allow a game database for the application to
+be maintained. This game collection will cater to all the requirements for developing a
+dynamic VR game according to the specifications of the MERN VR Game application.
+
+
+
+

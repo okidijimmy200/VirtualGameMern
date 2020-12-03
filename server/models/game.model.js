@@ -1,7 +1,11 @@
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 
+/**answerObjects and wrongObjects will both be arrays of VR object documents. These documents will represent the VR
+objects that are a part of the game */
 const VRObjectSchema = new mongoose.Schema({
+    /*OBJ and MTL file URLs: The objUrl and mtlUrl fields will store the links to the OBJ and MTL files representing the 3D object data. These
+fields will be of String type and are required fields for storing a VR object */
   objUrl: {
     type: String, trim: true,
     required: 'ObJ file is required'
@@ -10,13 +14,21 @@ const VRObjectSchema = new mongoose.Schema({
     type: String, trim: true,
     required: 'MTL file is required'
   },
+  /*Translation transform values: The translateX, translateY, and translateZ fields will hold the position values of the VR object in 3D
+space. These fields will be of Number type, and the default value for each will be 0 */
   translateX: {type: Number, default: 0},
   translateY: {type: Number, default: 0},
   translateZ: {type: Number, default: 0},
+  /*Rotation transform values: The rotateX, rotateY, and rotateZ fields will hold the orientation values of the VR object in 3D space. These fields
+will be of Number type, and the default value for each will be 0: */
   rotateX: {type: Number, default: 0},
   rotateY: {type: Number, default: 0},
   rotateZ: {type: Number, default: 0},
+  /*Scale: The scale field will represent the relative size appearance of the VR
+object. This field will be of Number type, and the default value will be 1 */
   scale: {type: Number, default: 1},
+  /*Color: The color field will specify the default color of the object if it is not provided in the MTL file. This field will be of String type, and the default
+value will be white */
   color: {type: String, default: 'white'}
 })
 const VRObject = mongoose.model('VRObject',VRObjectSchema)
@@ -66,11 +78,15 @@ game */
   maker: {type: mongoose.Schema.ObjectId, ref: 'User'}
 })
 
+/*add this validation for a minimum array length to the game schema, */
 GameSchema.path('answerObjects').validate(function(v) {
   if (v.length == 0) {
+      /*In this validation check, if the array length is found to be 0, we throw a validation error message indicating that at least one object must be added to the array, before
+saving the game document in the database. */
     this.invalidate('answerObjects', 'Must add alteast one VR object to collect')
   }
 }, null)
+/*same validation code is also added for the wrongObjects field, */
 GameSchema.path('wrongObjects').validate(function(v) {
   if (v.length == 0) {
     this.invalidate('wrongObjects', 'Must add alteast one other VR object')
