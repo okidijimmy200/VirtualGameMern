@@ -40,3 +40,27 @@ components as we build out the features of the MERN VR Game application in the
 rest of the chapter. The core features in this game platform depend on the capability
 to store specific details of each game
 
+Lecture 2:
+Defining a Game model::
+--we will implement a Mongoose model to define a Game model, and the implementation will be similar to other
+Mongoose model implementations.
+--laid out the details needed for each game in order to implement the scavenger-hunt features defined for
+the gameplay.
+--We will design the game schema based on these specific details about the game, its
+VR objects, and also a reference to the game maker.
+
+--we will
+discuss the specifics of the game schema, the sub-schema for storing individual VR
+objects that will be a part of the game, and the validation check to ensure a minimum
+number of VR objects are placed in the game.
+
+Exploring the game schema::
+--The game schema, which defines the game model with a structure for the game data,
+will specify the fields to store details about each game. These details will include a
+game name; a link for the game world image file, text description, or clue; arrays
+containing details of 3D objects in the game, timestamps indicating when the game
+was created or updated; and a reference to the user who created the game.
+
+--These fields added in the game schema definition will capture details of each game on
+the platform and allow us to implement the game-related features in the MERN VR
+Game application.
