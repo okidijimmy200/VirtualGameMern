@@ -36,8 +36,11 @@ const list = async (req, res) => {
   }
 }
 
+/*In the query to the Game collection in this method, we find all the games where the maker field matches the user specified in the userId route parameter. */
 const listByMaker = async (req, res) => {
   try {
+    /*The retrieved games will contain the maker name and ID and will be returned in the response to the
+requesting client. */
     let games = await Game.find({maker: req.profile._id}).populate('maker', '_id name')
     res.json(games)
   } catch (err) {

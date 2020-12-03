@@ -2,3 +2,10 @@ Lecture 1:
 Listing all games::
 --it will be possible to retrieve a list of all the games in the Game collection from the database using a list games API in the
 backend.
+
+Listing games by the maker::
+--it will also be possible to retrieve a list of games made by a specific user.
+--we will add another API endpoint in the
+backend that accepts a GET request.
+--A GET request received at this route will invoke the listByMaker controller method,
+which will query the Game collection in the database to get the matching games

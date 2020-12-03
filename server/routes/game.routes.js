@@ -18,6 +18,8 @@ router.route('/api/games/by/:userId')
 /*A POST request to this route will process the :userId param, verify that the current user is signed in, and then create a new game with the game data passed in the
 request */
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, gameCtrl.create)
+  /*A GET request received at this route will invoke the listByMaker controller method,
+which will query the Game collection in the database to get the matching games */
   .get(gameCtrl.listByMaker)
 
 router.route('/api/game/:gameId')

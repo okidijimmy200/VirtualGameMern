@@ -33,8 +33,12 @@ games in the response, which can be rendered in the interface. */
     }
   }
   
+  /*frontend, to fetch the games for a specific user with this list by the maker API,
+we will add a corresponding fetch method in api-game.js */
   const listByMaker = async (params, signal) => {
     try {
+      /*This fetch method can be invoked in the frontend interface with the user ID to make
+a call to the list games by the maker API. The */
       let response = await fetch('/api/games/by/'+params.userId, {
         method: 'GET',
         signal: signal,
