@@ -112,7 +112,11 @@ entered by the user as simple details for their VR game */
     newGame[name] = event.target.value
     setGame(newGame)
   }
+  /*The addObject method is passed the array type so we know which array the user
+wants to add the new object to */
   const addObject = name => event => {
+    /*we will just add an empty object to the array being iterated, so an empty form is rendered in its place, which users can fill out
+to enter new object details. */
     const newGame = {...game}
     newGame[name].push({})
     setGame(newGame)
@@ -123,9 +127,15 @@ entered by the user as simple details for their VR game */
     setGame(newGame)
   }
 
+  /*To implement the remove item functionality for this DELETE button, we will pass a removeObject method as a prop to the VRObjectForm component from the
+parent GameForm component */
   const removeObject = (type, index) => event => {
+    /*This method will allow the array to be updated in the parent component's state when a user clicks DELETE on a specific VRObjectForm. */
     const newGame = {...game}
+    /*the VR object corresponding to the item clicked will be removed by slicing at the given index from the array with the specified array type. */
     newGame[type].splice(index, 1)
+    /*This updated object array in the game will be reflected in the view when it is set in the state, with
+the deleted VR object removed from the form view. */
     setGame(newGame)
   }
     return (
@@ -155,14 +165,30 @@ added as the game world image URL. The image URL input will be taken in a TextFi
               <Typography className={classes.heading}>VR Objects to collect</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails className={classes.objectDetails}>
+              {/* Inside the nested ExpansionPanelDetails component, we will iterate through the
+answerObjects array or the wrongObjects array to render a VRObjectForm
+component for each VR object, */}
               {
                 game.answerObjects.map((item, i) => {
                   return <div key={i}>
-                    <VRObjectForm handleUpdate={handleObjectChange} index={i} type={'answerObjects'} vrObject={item} removeObject={removeObject}/>
+                    {/* To render each object in the array, we use a VRObjectForm component */}
+                    <VRObjectForm handleUpdate={handleObjectChange} 
+                    index={i} type={'answerObjects'} 
+                    /*While adding VRObjectForm in this code, we pass the single vrObject item as a
+prop, along with the current index in the array, the type of the array, and two
+methods for updating the state in GameForm when the array details are modified by
+changing details or deleting an object from within the VRObjectForm component */
+// This will render a form for each VR object in the arrays associated with the game in the GameForm component
+                    vrObject={item} removeObject={removeObject}/>
                   </div>
                 })
               }
-              <Button color="primary" variant="contained" onClick={addObject('answerObjects')}><AddBoxIcon color="secondary" style={{marginRight: '8px'}}/> Add Object</Button>
+              {/* For each array rendered in the game form, we will add a button that will let users push new VR objects to the given array. This button to add an object will render a
+new VRObjectForm component to take the details of a new VR object. */}
+              <Button color="primary" variant="contained" onClick={addObject('answerObjects')}>
+                {/* This ADD OBJECT button will render at the end of each list of VR object forms. */}
+                {/* When clicked on, it will add a new blank VR object form by invoking the addObject method */}
+                <AddBoxIcon color="secondary" style={{marginRight: '8px'}}/> Add Object</Button>
             </ExpansionPanelDetails>
           </ExpansionPanel>
           <ExpansionPanel>

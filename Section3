@@ -1,0 +1,17 @@
+Lecture 1:
+Iterating and rendering the object details form::
+--We will add the form interface seen in the previous section with Material-UI
+ExpansionPanel components to create a modifiable list of VR objects for each type
+of VR object array in the given game.
+
+Adding a new object to the array::
+--For each array rendered in the game form, we will add a button that will let users
+push new VR objects to the given array. This button to add an object will render a
+new VRObjectForm component to take the details of a new VR object.
+
+Removing an object from the array::
+-Each of the items rendered in the list of VR object forms can also be removed from the
+list by the user.
+--The VRObjectForm component displaying an item will contain a delete option, which will remove the object from the given array.
+--To implement the remove item functionality for this DELETE button, we will pass a removeObject method as a prop to the VRObjectForm component from the
+parent GameForm component
