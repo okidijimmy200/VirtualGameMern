@@ -8,4 +8,43 @@ Listing games by the maker::
 --we will add another API endpoint in the
 backend that accepts a GET request.
 --A GET request received at this route will invoke the listByMaker controller method,
-which will query the Game collection in the database to get the matching games
+which will query the Game collection in the database to get the matching games.
+
+Lecture 2::
+Loading a game::
+--we will expose an API that will retrieve the details of an individual game, specified by its ID in the game collection
+--we can add a GET API that queries the Game collection with an ID and returns the corresponding game document in the response.
+
+--This API for loading a single game will be used for the React views fetching a game detail and also the React 360 game view, which will render the game interface in the
+MERN VR Game application.
+
+Editing a game::
+--Authorized users who are signed in—and also the maker of a specific game—will be
+able to edit the details of that game in the database.
+--To enable this feature, we will
+implement an edit game API in the backend.
+--This method can be used in the
+frontend, which renders a form allowing users to update the game details.
+
+Deleting a game::
+--An authenticated and authorized user will be able to delete any of the games they
+created on the application.
+--To enable this feature, we will implement a delete game API in the backend.
+
+--With these game CRUD APIs functional in the backend, we are ready to implement
+the frontend that will use these APIs to allow users to create new games, list the
+games, modify existing games, and load a single game in the React 360 game view.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

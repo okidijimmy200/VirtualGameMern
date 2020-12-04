@@ -22,16 +22,29 @@ request */
 which will query the Game collection in the database to get the matching games */
   .get(gameCtrl.listByMaker)
 
+  /*we can add a GET API that queries the Game collection with an ID and returns the corresponding game document in the response */
 router.route('/api/game/:gameId')
+/*We will start implementing this API to fetch a single game by declaring a route that accepts a GET request */
+/*When a request is received at this route, the :gameId param in the route URL will be
+processed first to retrieve the individual game from the database */
   .get(gameCtrl.read)
 
 router.route('/api/games/:gameId')
+/*PUT route that allows an authorized user to edit one of their games. */
+/*A PUT request to '/api/games/:gameId' will first execute the gameByID controller method to retrieve the specific game's details */
+/*The requireSignin auth controller method will also be called to ensure the current user is signed in. */
+/*the isMaker controller method will determine whether the current user is the maker of this specific game, before finally running the game update controller method to modify
+the game in the database */
   .put(authCtrl.requireSignin, gameCtrl.isMaker, gameCtrl.update)
+  /*The flow of the controller method execution on the server, after receiving the DELETE  will be similar to the edit game API, with the final
+call made to the remove controller method i */
   .delete(authCtrl.requireSignin, gameCtrl.isMaker, gameCtrl.remove)
 
 router.route('/game/play')
   .get(gameCtrl.playGame)
 
+  /*The presence of the :gameId param in the route will invoke the gameByID controller
+method */
 router.param('gameId', gameCtrl.gameByID)
 /*game routes, so the user is available in the request object */
 router.param('userId', userCtrl.userByID)
