@@ -67,6 +67,29 @@ The NewGame component::
 --We will implement the form view for creating a new game in the NewGame React
 component. This form view will allow users to fill out the fields for a single game
 
+Lecture 4::
+Editing the game::
+--Users will be able to edit the games they made on the platform using a form similar to
+the form for creating new games.
+--We will implement this edit game view in the
+EditGame component, which will render the game form fields pre-populated with
+the existing game's details.
+
+The EditGame component::
+--Just as in the NewGame component, the EditGame component will also use the
+GameForm component to render the form elements. But in this form, the fields will
+load the current values of the game to be edited, and users will be able to update
+these values,
+
+--the GameForm will take the given game's ID as a prop so that it can fetch the game details.
+
+--The EditGame component will load in the browser at the /game/edit/:gameId path
+when an authenticated user is accessing it. Both this EditGame component and the
+NewGame component use the GameForm component to render the form elements that
+allow users to add the details of a game.
+
+
+
 
 
 
