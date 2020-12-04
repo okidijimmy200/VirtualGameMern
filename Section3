@@ -59,3 +59,97 @@ as a prop, and renders the details of the game, along with a PLAY GAME button th
 links to the VR game view,
 --This component will also conditionally render EDIT and DELETE buttons if the
 current user is the maker of the game.
+
+Lecture 4:
+Playing the VR game::
+--Users on the MERN VR Game application will be able to open and play any of the VR
+games from within the application. To enable this, we will add an API on the server
+that renders the index.html file, which was generated with React 360,
+
+This API on the backend will receive a GET request at the following path:
+/game/play?id=<game ID>
+
+--This path takes a game ID value as a query parameter. The game ID in this URL will
+be used in the React 360 code, as elaborated on later in the chapter, to fetch the game's
+details using the load game API.
+
+Implementing the API to render the VR game view::
+--In order to implement the API that will render the VR game in the browser, we will
+add a route in the backend that will receive a GET request and open the index.html
+page from React 360.
+
+--In the browser, this will render the React 360 game code, which needs to fetch the
+game details from the database using the load game API and render the game world,
+along with the VR objects that the user can interact with.
+
+Updating the game code in React 360::
+--we can update the React 360 project to make it render games directly from the game collection in the database.
+--We will use the game ID in the link that opens the React 360 application to fetch game details, using the load game API from within the React 360 code. Then, we will set
+this retrieved game data to the state so that the game loads details from the database instead of the static sample data we used
+---Once the code is updated, we can bundle it again and place the compiled files
+in the MERN application before trying out the integration,
+
+Getting the game ID from a link::
+--In order to render the VR game based on the game the user chose to play from the
+MERN VR Game application, we need to retrieve the corresponding game ID from
+the link that loads the VR game view.
+
+componentDidMount = () => {
+let gameId = Location.search.split('?id=')[1]
+read({
+gameId: gameId
+}).then((data) => {
+if (data.error) {
+this.setState({error: data.error});
+} else {
+this.setState({
+vrObjects: data.answerObjects.concat(data.wrongObjects),
+game: data
+});
+Environment.setBackgroundImage(
+{uri: data.world}
+)
+}
+})
+}
+
+---Location.search gives us access to the query string in the incoming URL that
+loads index.html. The retrieved query string is split to get the gameId value from
+the id query parameter attached in the URL. We use this gameId value to fetch the
+game details with the load game API on the backend and set it to the state for the
+game and vrObjects values. To be able to use the load game API in the React 360
+project, we will define a corresponding fetch method in the project
+
+Fetching the game data with the load game API::
+--We want to fetch the game data from within the React 360 code. In the React 360
+project folder, we will add an api-game.js file that will contain a read fetch method
+that makes a call to the load game API on the server using the provided game ID.
+
+/MERNVR/api-game.js:
+const read = (params) => {
+return fetch('/api/game/' + params.gameId, {
+method: 'GET'
+}).then((response) => {
+return response.json()
+}).catch((err) => console.log(err))
+}
+export {
+read
+}
+
+--This fetch method receives the game ID in the params and makes the API call to
+retrieve the corresponding game from the database. It is used
+in componentDidMount of the React 360 entry component, which is defined in the
+index.js file, to retrieve the game details,
+
+Bundling and integrating the updated code::
+-With the React 360 code updated to fetch and render game details dynamically from
+the server, we can bundle this code using the provided bundle script and place the
+newly compiled files in the dist folder of the MERN VR Game project directory.
+
+*************yarn bundle************
+
+--This will generate the client.bundle.js and index.bundle.js bundle files in the
+build/ folder with the updated React 360 code. These files, along with the
+index.html file and static_assets folders, need to be added to the MERN VR
+Game application code

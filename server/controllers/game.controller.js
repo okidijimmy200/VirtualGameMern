@@ -123,6 +123,7 @@ game in the database. This */
   next()
 }
 
+/*The playGame controller method will simply send the index.html page placed in the /server/vr/ folder to the requesting client */
 const playGame = (req, res) => {
   res.sendFile(process.cwd()+'/server/vr/index.html')
 }

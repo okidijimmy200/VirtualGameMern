@@ -40,7 +40,11 @@ the game in the database */
 call made to the remove controller method i */
   .delete(authCtrl.requireSignin, gameCtrl.isMaker, gameCtrl.remove)
 
+
+/*In order to implement the API that will render the VR game in the browser, we will add a route in the backend that will receive a GET request and open the index.html
+page from React 360 */
 router.route('/game/play')
+/*A GET request received at this route will execute the playGame controller method, which will return the index.html page in response to the incoming request */
   .get(gameCtrl.playGame)
 
   /*The presence of the :gameId param in the route will invoke the gameByID controller
