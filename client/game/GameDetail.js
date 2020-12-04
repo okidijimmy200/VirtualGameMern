@@ -64,6 +64,9 @@ export default function GameDetail(props) {
   const classes = useStyles()
     return (<Card className={classes.card}>
       <div className={classes.heading}>
+        {/* we will first add the game details—such as the name, world image, clue text, and maker name—to give users an
+overview of the game. We will use Material-UI components to compose the interface
+with these details, */}
         <Typography type="headline" component="h2" className={classes.title}>
           {props.game.name}
         </Typography>
@@ -81,15 +84,30 @@ export default function GameDetail(props) {
         </Typography>
       </CardContent>
       <div className={classes.action}>
+        {/* The PLAY GAME button rendered in the GameDetail component will simply be a
+button wrapped in an HTML link element that points to the route that opens the
+React 360-generated index.html file */}
         <a href={"/game/play?id=" + props.game._id} target='_self'>
+          {/* The route to the game view takes the game ID as a query parameter. We set
+target='_self' on the link so React Router skips transitioning to the next state and
+lets the browser handle this link */}
+{/* ------------------------------------------------------------------------ */}
+{/* What this will do is allow the browser to directly make the request to the server at this route when the link is clicked, and render the
+index.html file sent by the server in response to this request, allowing the user to start playing the rendered VR game immediately. */}
           <Button variant="contained" color="secondary" className={classes.button}>
             Play Game
           </Button>
         </a>
       </div>
       {
+        /*we will conditionally show EDIT and DELETE options only if the currently signed-in user is also the maker of the
+game being rendered. */
         auth.isAuthenticated().user && auth.isAuthenticated().user._id == props.game.maker._id
         && (<div>
+          {/* After ensuring the current user is actually authenticated, we check if the user ID of
+the signed-in user matches the maker ID in the game. Then, accordingly, we render
+the EDIT button linking to the edit form view, and the DELETE option with
+a DeleteGame component */}
               <Link to={"/game/edit/" + props.game._id}>
                 <Button variant="contained" color="primary" className={classes.editbutton}>
                   Edit

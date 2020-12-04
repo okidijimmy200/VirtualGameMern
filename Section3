@@ -35,3 +35,27 @@ handleChange method will be invoked.
 --The removeObject method will take the value of the object array type and the array
 index position, to remove the given object from the relevant VR object array in
 the GameForm component's state
+
+Lecture 3:
+Adding the game list views::
+--Visitors to MERN VR Game will access the games on the application from lists
+rendered on the home page and individual user profiles. The home page will list all
+the games on the application, and the games by a specific maker will be listed on their
+user profile page. These list views will iterate through game data fetched using the
+backend APIs for listing games, and render details of each game in a reusable React
+component.
+
+Rendering lists of games::
+--Profile component, we can fetch the list of games by the given user with a call to the
+associated list games by the maker API in an useEffect hook. With the retrieved list
+of games set in the state, we can iterate over it to render each game in a GameDetail
+component
+
+The GameDetail component::
+--We will implement the GameDetail component to render individual games in any
+game list view in the application.
+--This GameDetail component takes the game object
+as a prop, and renders the details of the game, along with a PLAY GAME button that
+links to the VR game view,
+--This component will also conditionally render EDIT and DELETE buttons if the
+current user is the maker of the game.
