@@ -121,7 +121,11 @@ to enter new object details. */
     newGame[name].push({})
     setGame(newGame)
   }
+  /*To register this update, the GameForm that houses the forms for the VR objects will pass the handleObjectChange method to the VRObjectForm component, which will render
+the VR object form. */
   const handleObjectChange = (index, type, name, val) => {
+    /*This handleObjectChange method will be used in the VRObjectFrom component to capture the changed input's value and update the corresponding field of the VR
+object at the specified index in the array of the given type, so it is reflected in the game object stored in the state in GameForm */
     var newGame = {...game}
     newGame[type][index][name] = val
     setGame(newGame)

@@ -26,7 +26,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function VRObjectForm(props) {
   const classes = useStyles()
+  /*To begin implementation of this VRObjectForm component containing a VR object form, we will start by initializing the blank details of a VR object in the component's
+state with a useState hook, */
   const [values, setValues] = useState({
+    /*These details correspond to the schema defined for storing a VR object */
     objUrl: '',
     mtlUrl: '',
     translateX: 0,
@@ -38,8 +41,17 @@ export default function VRObjectForm(props) {
     scale: 1,
     color:'white'
   })
+  /*When a VRObjectForm component is added to the GameForm component, it may receive an empty VR object or a VR object populated with details, depending on whether an
+empty form or a form with details of an existing object is being rendered. */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*In the casethat an existing VR object is passed as a prop, we will set the details of this object in
+the component state using an useEffect hook, */
   useEffect(() => {
+    /*In this useEffect hook, if the vrObject value passed in the prop is not an empty
+object, we set the details of the received VR object in the state */
     if(props.vrObject && Object.keys(props.vrObject).length != 0){
+      /*These values will be
+used in the input fields that make up the VR object form. */
       const vrObject = props.vrObject
       setValues({...values,
         objUrl: vrObject.objUrl,
@@ -55,15 +67,22 @@ export default function VRObjectForm(props) {
       })
     }
   }, [])
+  /*This handleChange method will update the corresponding value in the state of the VRObjectForm component, and use the handleUpdate method passed as a prop
+from GameForm to update the VR object in the GameForm state with the changed value for the specific object detail. */
   const handleChange = name => event => {
     setValues({...values, [name]: event.target.value})
     props.handleUpdate(props.index, props.type, name, event.target.value)
   }
     return (
       <Card className={classes.card}>
+        {/* 3D object file input: The OBJ and MTL file links will be collected for each
+VR object as text input using the TextField components */}
         <TextField
           label=".obj url"
           value={values.objUrl}
+          /*These input fields will allow the user to set the details of a VR object in a game. When
+any of these VR object details are changed in these input fields by the user, the
+handleChange method will be invoked */
           onChange={handleChange('objUrl')}
           className={classes.textField}
           margin="normal"
@@ -75,6 +94,8 @@ export default function VRObjectForm(props) {
           className={classes.textField}
           margin="normal"
         /><br/>
+        {/* Translate value input: The translate values of the VR object across the x, y,
+and z axes will be input in the TextField components of the number type */}
         <TextField
           value={values.translateX}
           label="TranslateX"
@@ -99,6 +120,8 @@ export default function VRObjectForm(props) {
           className={classes.numberField}
           margin="normal"
         /><br/>
+        {/* Rotate value input: The rotation values of the VR object around the x, y,
+and z axes will be input in the TextField components of the number type */}
         <TextField
           value={values.rotateX}
           label="RotateX"
@@ -123,6 +146,8 @@ export default function VRObjectForm(props) {
           className={classes.numberField}
           margin="normal"
         /><br/>
+        {/* Scale value input: The scale value for the VR object will be input in a
+TextField component of the number type */}
         <TextField
           value={values.scale}
           label="Scale"
@@ -131,6 +156,8 @@ export default function VRObjectForm(props) {
           className={classes.numberField}
           margin="normal"
         />
+        {/* Object color input: The color value for the VR object will be input in a
+TextField component of the text */}
         <TextField
           value={values.color}
           label="Color"
@@ -138,6 +165,8 @@ export default function VRObjectForm(props) {
           className={classes.numberField}
           margin="normal"
         />
+        {/* The VRObjectForm will also contain a DELETE button that will execute the removeObject method received in the GameForm as a prop, which will allow the
+given object to be removed from the list in the game. */}
         <Button onClick={props.removeObject(props.type, props.index)}>
           <Icon style={{marginRight: '5px'}}>cancel</Icon> Delete
         </Button><br/>

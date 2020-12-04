@@ -14,4 +14,24 @@ Removing an object from the array::
 list by the user.
 --The VRObjectForm component displaying an item will contain a delete option, which will remove the object from the given array.
 --To implement the remove item functionality for this DELETE button, we will pass a removeObject method as a prop to the VRObjectForm component from the
-parent GameForm component
+parent GameForm component.
+
+Lecture 2:
+Handling the object detail change::
+--The details of any VR object in the game will be updated when the user changes input
+values in any of the fields in the corresponding VR object form.
+--The GameForm component renders the form elements for modifying the details of a game, including the lists of VR objects. Using this form, users can add, modify, and
+delete VR objects in the lists. The lists render each item in a VR object form that the users can use to compose the details of the object. In the next section, we will
+implement the React component that renders this.
+
+The VRObjectForm component::
+--We will implement the VRObjectForm component to render the input fields for modifying an individual VR object's details, which are added to the answerObjects
+and wrongObjects arrays of the game in the GameForm component.
+
+--These input fields will allow the user to set the details of a VR object in a game. When
+any of these VR object details are changed in these input fields by the user, the
+handleChange method will be invoked.
+
+--The removeObject method will take the value of the object array type and the array
+index position, to remove the given object from the relevant VR object array in
+the GameForm component's state
