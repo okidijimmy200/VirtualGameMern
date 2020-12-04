@@ -88,6 +88,50 @@ when an authenticated user is accessing it. Both this EditGame component and the
 NewGame component use the GameForm component to render the form elements that
 allow users to add the details of a game.
 
+Lecture 5:
+Implementing the GameForm component::
+-The GameForm component is used in both the NewGame and EditGame components,
+and it contains the elements that allow users to enter game details and VR object
+details for a single game.
+
+--It may start with a blank game object or load an existing
+game. To begin the implementation of this component, we will first initialize a blank
+game object in the component state.
+
+--If the GameForm component receives a gameId prop from the parent
+component—such as from the EditGame component—then it will use the load game
+API to retrieve the game's details and set it to the state, to be rendered in the form
+view.
+
+--The form view part in the GameForm component will essentially have two parts: one
+part that takes simple game details—such as name, world image link, and clue
+text—as input, and a second part that allows users to add a variable number of VR
+objects to either the answer objects array or the wrong objects array.
+
+Inputting simple game details::
+--While creating or editing a game, users will first see the form elements for the simpler
+details of the game, such as name, world image URL, and the clue text. This form
+section with the simple game details will mostly be text input elements added using
+the Material-UI TextField component, with a change handling method passed to
+the onChange handler.
+--The form will also give the
+option to define arrays of VR objects that will also be a part of the game.
+
+Modifying arrays of VR objects::
+--Users will be able to define a dynamic number of VR objects in two different arrays
+for each game. In order to allow users to modify these arrays of answerObjects and
+wrongObjects that they wish to add to their VR game, GameForm will iterate
+through each array and render a VR object form component for each object. With this,
+it will become possible to add, remove, and modify VR objects from the GameForm
+component,
+
+--we will add these array manipulation functionalities in the
+GameForm component. We will start by rendering each item in the VR object arrays
+and incorporate an option to add a new item or remove an existing item from an
+array. Then, since each item in an array will essentially be a form to enter VR object
+details, we will also discuss how to handle the input changes made within each item
+from the GameForm component.
+
 
 
 
