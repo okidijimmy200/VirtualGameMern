@@ -43,6 +43,10 @@ const Menu = withRouter(({history}) => (
         }
         {
           auth.isAuthenticated() && (<span>
+            {/* To add this button to the Menu component, we will use a Link component with the
+route for the NewGame component containing the form. To make it render
+conditionally, we will place it right before the MY PROFILE link shown in the
+preceding screenshot, in the section that renders only when the user is authenticated. */}
             <Link to="/game/new">
               <Button style={isActive(history, "/game/new")}>
                 <AddBoxIcon color="secondary" style={{marginRight: '8px'}}/> Make Game

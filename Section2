@@ -35,8 +35,37 @@ created on the application.
 the frontend that will use these APIs to allow users to create new games, list the
 games, modify existing games, and load a single game in the React 360 game view.
 
+Lecture 3:
+Adding a form for creating and editing games::
+--Users registered on the MERN VR Game application will be able to make new games
+and modify these games from views on the application.
+--To implement these views,
+we will add React components that allow users to compose and modify the game
+details and VR object details for each game.
+--As the form for creating new and editing
+existing games will have similar form fields for composing game details and VR
+object details, we will make reusable components that can be used both for creating
+and editing purposes.
 
+Making a new game::
+--When any user signs into the application, they will be given the option to make their
+own VR game.
+--They will see a MAKE GAME link on the menu that will navigate
+them to a form where they can fill in the game details to create a new game on the
+platform.
 
+Updating the menu::
+--We will update the navigation menu in the application to add the MAKE GAME
+button, which will appear conditionally based on whether the user is signed in, and
+redirect the user to a view containing the form to create a new game.
+
+--This will show the MAKE GAME option to signed-in users, and they can click on it to
+be redirected to the /game/new route containing the form view for making a new
+game on the platform.
+
+The NewGame component::
+--We will implement the form view for creating a new game in the NewGame React
+component. This form view will allow users to fill out the fields for a single game
 
 
 

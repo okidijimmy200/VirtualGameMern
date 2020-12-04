@@ -22,6 +22,8 @@ const MainRouter = () => {
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
         <Route path="/user/:userId" component={Profile}/>
 
+{/* To load this NewGame component at a specified URL and only for authenticated users,
+we will add a PrivateRoute in MainRouter */}
         <PrivateRoute path="/game/new" component={NewGame}/>
         <PrivateRoute path="/game/edit/:gameId" component={EditGame}/>
       </Switch>
